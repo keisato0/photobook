@@ -44,12 +44,13 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // ---------- モバイル用の一覧（地図はタップしづらいため） ----------
+  // ---------- モバイル用の一覧（地図はタップしづらいため、写真がある都道府県だけ表示） ----------
   if (listEl) {
     // PREFECTURES は北海道→沖縄の順に並んでおり、地方ごとにまとまっているのでそのまま使う
+    const withPhotos = PREFECTURES.filter((pref) => photoCountFor(pref) > 0);
     let currentRegion = null;
     let ul = null;
-    PREFECTURES.forEach((pref) => {
+    withPhotos.forEach((pref) => {
       if (pref.region !== currentRegion) {
         currentRegion = pref.region;
         const section = document.createElement("div");
@@ -62,18 +63,10 @@ document.addEventListener("DOMContentLoaded", () => {
         listEl.appendChild(section);
       }
 
-      const photoCount = photoCountFor(pref);
       const li = document.createElement("li");
       const a = document.createElement("a");
       a.href = `gallery.html?pref=${pref.slug}`;
-      if (photoCount > 0) a.classList.add("has-photos");
-      const name = document.createElement("span");
-      name.textContent = pref.kanji;
-      const count = document.createElement("span");
-      count.className = "count";
-      count.textContent = photoCount > 0 ? `${photoCount}枚` : "写真なし";
-      a.appendChild(name);
-      a.appendChild(count);
+      a.textContent = pref.kanji;
       li.appendChild(a);
       ul.appendChild(li);
     });

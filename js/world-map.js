@@ -54,23 +54,16 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // ---------- モバイル用の一覧（地図はタップしづらいため） ----------
+  // ---------- モバイル用の一覧（地図はタップしづらいため、写真がある国だけ表示） ----------
   if (listEl) {
-    const sorted = [...COUNTRIES].sort((a, b) => a.kanji.localeCompare(b.kanji, "ja"));
+    const withPhotos = COUNTRIES.filter((country) => photoCountFor(country) > 0);
+    withPhotos.sort((a, b) => a.kanji.localeCompare(b.kanji, "ja"));
     const ul = document.createElement("ul");
-    sorted.forEach((country) => {
-      const photoCount = photoCountFor(country);
+    withPhotos.forEach((country) => {
       const li = document.createElement("li");
       const a = document.createElement("a");
       a.href = hrefFor(country);
-      if (photoCount > 0) a.classList.add("has-photos");
-      const name = document.createElement("span");
-      name.textContent = country.kanji;
-      const count = document.createElement("span");
-      count.className = "count";
-      count.textContent = photoCount > 0 ? `${photoCount}枚` : "写真なし";
-      a.appendChild(name);
-      a.appendChild(count);
+      a.textContent = country.kanji;
       li.appendChild(a);
       ul.appendChild(li);
     });
