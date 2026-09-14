@@ -24,7 +24,6 @@ body {
   background: var(--bg);
   color: var(--ink);
   font-family: "Hiragino Mincho ProN", "Yu Mincho", "YuMincho", serif;
-  min-width: 1000px;
 }
 
 .page {
@@ -188,6 +187,53 @@ body {
   font-size: 13px;
 }
 
+/* ---------- モバイル用の一覧（地図がタップしづらいための代替導線） ---------- */
+
+.mobile-list {
+  display: none;
+}
+
+.mobile-list-region h2 {
+  font-size: 13px;
+  color: var(--ink-soft);
+  letter-spacing: 0.1em;
+  margin: 24px 4px 4px;
+}
+
+.mobile-list ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid var(--line);
+}
+
+.mobile-list li {
+  border-bottom: 1px solid var(--line);
+}
+
+.mobile-list a {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 4px;
+  color: var(--ink);
+  text-decoration: none;
+  font-size: 15px;
+  letter-spacing: 0.03em;
+  min-height: 44px;
+}
+
+.mobile-list a .count {
+  flex: none;
+  font-size: 12px;
+  color: var(--ink-soft);
+}
+
+.mobile-list a.has-photos .count {
+  color: var(--accent);
+}
+
 /* ---------- ギャラリーページ ---------- */
 
 .breadcrumb {
@@ -348,4 +394,60 @@ body {
   top: 50%;
   transform: translateY(-50%);
   font-size: 40px;
+}
+
+/* ---------- モバイル ---------- */
+
+@media (max-width: 700px) {
+  .page {
+    padding: 32px 16px 60px;
+  }
+
+  .site-title {
+    font-size: 26px;
+  }
+
+  .site-subtitle {
+    font-size: 12px;
+  }
+
+  .map-wrap {
+    margin-top: 28px;
+  }
+
+  /* ホバー前提のツールチップはタップ操作と相性が悪いので、下の一覧に譲る */
+  .map-tooltip {
+    display: none;
+  }
+
+  .mobile-list {
+    display: block;
+    margin-top: 8px;
+  }
+
+  .gallery-title h1 {
+    font-size: 24px;
+  }
+
+  .gallery-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  .lightbox .prev,
+  .lightbox .next {
+    font-size: 32px;
+    padding: 16px 12px;
+  }
+
+  .lightbox .close {
+    font-size: 24px;
+    padding: 16px;
+  }
+}
+
+@media (max-width: 420px) {
+  .gallery-grid {
+    grid-template-columns: 1fr;
+  }
 }
