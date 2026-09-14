@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>旅の記録</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="page">
+  <nav class="breadcrumb"><a href="index.html" id="backLink">← 地図に戻る</a></nav>
+
+  <header class="gallery-title">
+    <span class="region" id="galleryRegion"></span>
+    <h1 id="galleryTitle"></h1>
+    <span class="romaji" id="galleryRomaji"></span>
+  </header>
+
+  <div class="gallery-grid" id="galleryGrid"></div>
+
+  <div class="empty-state" id="emptyState" style="display:none;">
+    <p id="emptyStateText">まだ写真はありません。</p>
+  </div>
+</div>
+
+<div class="lightbox" id="lightbox">
+  <button class="close" id="lightboxClose">&times;</button>
+  <button class="prev" id="lightboxPrev">&#8249;</button>
+  <img id="lightboxImg" alt="">
+  <button class="next" id="lightboxNext">&#8250;</button>
+  <div class="caption" id="lightboxCaption"></div>
+</div>
+
+<script src="js/prefectures.js"></script>
+<script src="js/photos.js"></script>
+<script src="js/countries.js"></script>
+<script src="js/world-photos.js"></script>
+<script src="js/gallery.js"></script>
+</body>
+</html>

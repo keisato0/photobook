@@ -1,0 +1,351 @@
+:root {
+  --bg: #faf8f4;
+  --ink: #2b2926;
+  --ink-soft: #6b6560;
+  --accent: #c1573a;
+  --accent-soft: #e8b9a8;
+  --line: #ddd6cc;
+  --visited-fill: #d9c9a3;
+  --visited-hover: #c1573a;
+  --unvisited-fill: #eeece6;
+  --unvisited-hover: #d8d2c4;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: "Hiragino Mincho ProN", "Yu Mincho", "YuMincho", serif;
+  min-width: 1000px;
+}
+
+.page {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 48px 32px 80px;
+}
+
+/* ---------- ヘッダー ---------- */
+
+.site-header {
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+.site-title {
+  font-size: 34px;
+  letter-spacing: 0.12em;
+  margin: 0;
+  font-weight: 600;
+}
+
+.site-subtitle {
+  color: var(--ink-soft);
+  font-size: 14px;
+  letter-spacing: 0.08em;
+  margin-top: 10px;
+}
+
+/* ---------- 地図ページ ---------- */
+
+.map-wrap {
+  position: relative;
+  margin: 40px auto 0;
+  max-width: 760px;
+}
+
+.map-wrap.world-map-wrap {
+  max-width: 900px;
+}
+
+.map-wrap svg {
+  width: 100%;
+  height: auto;
+  display: block;
+  overflow: visible;
+}
+
+.geolonia-svg-map .prefecture polygon,
+.geolonia-svg-map .prefecture path {
+  stroke: #ffffff;
+  stroke-width: 1.2;
+  fill: var(--unvisited-fill);
+  transition: fill 0.15s ease;
+  cursor: pointer;
+}
+
+.geolonia-svg-map .prefecture.has-photos polygon,
+.geolonia-svg-map .prefecture.has-photos path {
+  fill: var(--visited-fill);
+}
+
+.geolonia-svg-map .prefecture:hover polygon,
+.geolonia-svg-map .prefecture:hover path {
+  fill: var(--unvisited-hover);
+}
+
+.geolonia-svg-map .prefecture.has-photos:hover polygon,
+.geolonia-svg-map .prefecture.has-photos:hover path {
+  fill: var(--visited-hover);
+}
+
+.geolonia-svg-map .boundary-line line {
+  stroke: var(--bg);
+}
+
+.world-svg .country,
+.world-svg .country path {
+  stroke: #ffffff;
+  stroke-width: 0.5;
+  fill: var(--unvisited-fill);
+  transition: fill 0.15s ease;
+  cursor: pointer;
+}
+
+.world-svg .country.has-photos,
+.world-svg .country.has-photos path {
+  fill: var(--visited-fill);
+}
+
+.world-svg .country:hover,
+.world-svg .country:hover path {
+  fill: var(--unvisited-hover);
+}
+
+.world-svg .country.has-photos:hover,
+.world-svg .country.has-photos:hover path {
+  fill: var(--visited-hover);
+}
+
+.map-tooltip {
+  position: fixed;
+  pointer-events: none;
+  background: var(--ink);
+  color: #fff;
+  padding: 6px 12px;
+  font-size: 13px;
+  letter-spacing: 0.05em;
+  border-radius: 3px;
+  transform: translate(-50%, -130%);
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 0.1s ease;
+  z-index: 20;
+}
+
+.map-tooltip.visible {
+  opacity: 1;
+}
+
+.map-tooltip .count {
+  color: var(--accent-soft);
+  margin-left: 6px;
+}
+
+.legend {
+  display: flex;
+  justify-content: center;
+  gap: 28px;
+  margin-top: 28px;
+  font-size: 13px;
+  color: var(--ink-soft);
+  letter-spacing: 0.04em;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.legend-swatch {
+  width: 14px;
+  height: 14px;
+  border-radius: 2px;
+  display: inline-block;
+}
+
+.legend-swatch.visited {
+  background: var(--visited-fill);
+}
+
+.legend-swatch.unvisited {
+  background: var(--unvisited-fill);
+}
+
+.stats {
+  text-align: center;
+  margin-top: 6px;
+  color: var(--ink-soft);
+  font-size: 13px;
+}
+
+/* ---------- ギャラリーページ ---------- */
+
+.breadcrumb {
+  text-align: center;
+  margin-bottom: 4px;
+}
+
+.breadcrumb a {
+  color: var(--ink-soft);
+  text-decoration: none;
+  font-size: 13px;
+  letter-spacing: 0.05em;
+}
+
+.breadcrumb a:hover {
+  color: var(--accent);
+}
+
+.gallery-title {
+  text-align: center;
+  margin-top: 24px;
+}
+
+.gallery-title .region {
+  display: block;
+  font-size: 13px;
+  color: var(--ink-soft);
+  letter-spacing: 0.15em;
+  margin-bottom: 6px;
+}
+
+.gallery-title h1 {
+  font-size: 30px;
+  margin: 0;
+  letter-spacing: 0.1em;
+}
+
+.gallery-title .romaji {
+  display: block;
+  font-size: 13px;
+  color: var(--ink-soft);
+  letter-spacing: 0.15em;
+  margin-top: 8px;
+}
+
+.gallery-grid {
+  margin-top: 44px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+.gallery-grid figure {
+  margin: 0;
+  cursor: pointer;
+}
+
+.gallery-grid img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  display: block;
+  overflow: hidden;
+  background: #efece4;
+  transition: transform 0.3s ease;
+}
+
+.gallery-grid figure:hover img {
+  transform: scale(1.04);
+}
+
+.gallery-grid figcaption {
+  margin-top: 8px;
+  font-size: 13px;
+  color: var(--ink-soft);
+  letter-spacing: 0.03em;
+  line-height: 1.5;
+}
+
+.empty-state {
+  text-align: center;
+  margin-top: 80px;
+  color: var(--ink-soft);
+  line-height: 1.9;
+}
+
+.empty-state .hint {
+  font-size: 12px;
+  color: #a8a29a;
+  margin-top: 12px;
+}
+
+/* ---------- ライトボックス ---------- */
+
+.lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(20, 18, 16, 0.92);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  z-index: 100;
+}
+
+.lightbox.open {
+  display: flex;
+}
+
+.lightbox img {
+  max-width: 82vw;
+  max-height: 78vh;
+  object-fit: contain;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+}
+
+.lightbox .caption {
+  color: #f2ede4;
+  margin-top: 18px;
+  font-size: 14px;
+  letter-spacing: 0.05em;
+  min-height: 1.2em;
+}
+
+.lightbox .close,
+.lightbox .prev,
+.lightbox .next {
+  position: absolute;
+  background: none;
+  border: none;
+  color: #f2ede4;
+  font-size: 28px;
+  cursor: pointer;
+  padding: 12px 18px;
+  opacity: 0.7;
+}
+
+.lightbox .close:hover,
+.lightbox .prev:hover,
+.lightbox .next:hover {
+  opacity: 1;
+}
+
+.lightbox .close {
+  top: 16px;
+  right: 16px;
+}
+
+.lightbox .prev {
+  left: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 40px;
+}
+
+.lightbox .next {
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 40px;
+}
