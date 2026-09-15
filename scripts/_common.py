@@ -2,6 +2,7 @@
 
 import json
 import re
+import unicodedata
 
 IMAGE_EXTS = {".jpg", ".jpeg", ".png", ".webp", ".gif"}
 SEPARATOR_RE = re.compile(r"^[\s、,，・\-_/]+")
@@ -46,9 +47,14 @@ def match_name(stem, entries, name_field, key_field, suffixes=()):
 
     見つからなければ (None, None)。名前の後ろに suffixes のいずれか（例: 県/府/都）が
     続いていても許容する。
+
+    macOSではファイル名が濁点・半濁点を分解したNFD形式で保存されることがあり、
+    見た目が同じでもNFC形式の国名・都道府県名と一致しないことがあるため、
+    比較前に両方をNFCへ正規化する。
     """
+    stem = unicodedata.normalize("NFC", stem)
     for entry in entries:
-        name = entry[name_field]
+        name = unicodedata.normalize("NFC", entry[name_field])
         rest = None
         if stem.startswith(name):
             rest = stem[len(name):]

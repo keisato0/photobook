@@ -44,8 +44,10 @@ const PHOTOS = {
   mie: [
     { src: "photos/三重、伊勢、2018年3月.jpg", caption: "伊勢、2018年3月" },
     { src: "photos/三重、熊野灘、2018年8月.jpg", caption: "熊野灘、2018年8月" },
+    { src: "photos/三重、瀞峡、2018年11月.jpg", caption: "瀞峡、2018年11月" },
   ],
   shiga: [
+    { src: "photos/滋賀、長等公園下、2018年11月.jpg", caption: "長等公園下、2018年11月" },
     { src: "photos/滋賀、奥琵琶湖、2019年10月.jpg", caption: "奥琵琶湖、2019年10月" },
   ],
   kyoto: [
