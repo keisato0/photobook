@@ -316,6 +316,11 @@ const COUNTRIES = [
     "english": "Guinea"
   },
   {
+    "code": "gp",
+    "kanji": "グアドループ",
+    "english": "Guadeloupe"
+  },
+  {
     "code": "gq",
     "kanji": "赤道ギニア",
     "english": "Equatorial Guinea"
@@ -544,6 +549,11 @@ const COUNTRIES = [
     "code": "mn",
     "kanji": "モンゴル",
     "english": "Mongolia"
+  },
+  {
+    "code": "mq",
+    "kanji": "マルティニーク",
+    "english": "Martinique"
   },
   {
     "code": "mr",
