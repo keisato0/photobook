@@ -5,7 +5,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const titleEl = document.getElementById("galleryTitle");
   const romajiEl = document.getElementById("galleryRomaji");
-  const regionEl = document.getElementById("galleryRegion");
   const gridEl = document.getElementById("galleryGrid");
   const emptyEl = document.getElementById("emptyState");
   const emptyTextEl = document.getElementById("emptyStateText");
@@ -22,7 +21,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     photos = WORLD_PHOTOS[entry.code] || [];
     pageTitle = entry.kanji;
-    regionEl.style.display = "none";
     romajiEl.textContent = entry.english;
     backLinkEl.href = "index.html";
     emptyTextEl.textContent = "まだこの国の写真はありません。";
@@ -36,8 +34,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     photos = PHOTOS[entry.slug] || [];
     pageTitle = entry.kanji;
-    regionEl.style.display = "";
-    regionEl.textContent = entry.region;
     romajiEl.textContent = entry.romaji;
     backLinkEl.href = "japan.html";
     emptyTextEl.textContent = "まだこの都道府県の写真はありません。";

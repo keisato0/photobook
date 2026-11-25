@@ -245,14 +245,6 @@ body {
   margin-top: 24px;
 }
 
-.gallery-title .region {
-  display: block;
-  font-size: 13px;
-  color: var(--ink-soft);
-  letter-spacing: 0.15em;
-  margin-bottom: 6px;
-}
-
 .gallery-title h1 {
   font-size: 30px;
   margin: 0;
