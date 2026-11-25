@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-photos/ フォルダの画像から js/photos.js を自動生成するスクリプト。
+japan-photos/ フォルダの画像から js/photos.js を自動生成するスクリプト。
 
 ファイル名の付け方:
   "<都道府県名><場所><撮影時期>.拡張子"
@@ -30,7 +30,7 @@ from pathlib import Path
 import _common
 
 ROOT = Path(__file__).resolve().parent.parent
-PHOTOS_DIR = ROOT / "photos"
+PHOTOS_DIR = ROOT / "japan-photos"
 PREFECTURES_JS = ROOT / "js" / "prefectures.js"
 PHOTOS_JS = ROOT / "js" / "photos.js"
 CAPTIONS_JS = ROOT / "js" / "captions.js"
@@ -98,7 +98,7 @@ def main():
         for name, caption in files:
             lines.append(
                 "    { src: %s, caption: %s },"
-                % (json.dumps(f"photos/{name}", ensure_ascii=False), json.dumps(caption, ensure_ascii=False))
+                % (json.dumps(f"japan-photos/{name}", ensure_ascii=False), json.dumps(caption, ensure_ascii=False))
             )
         lines.append("  ],")
     lines.append("};")
@@ -121,6 +121,6 @@ def main():
 
 if __name__ == "__main__":
     if not PHOTOS_DIR.exists():
-        print("photos/ フォルダが見つかりません", file=sys.stderr)
+        print("japan-photos/ フォルダが見つかりません", file=sys.stderr)
         sys.exit(1)
     main()

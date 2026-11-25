@@ -33,11 +33,11 @@ js/map.js                     日本地図のマウスオーバー・クリッ�
 
 js/gallery.js                 ギャラリー表示・拡大表示（ライトボックス）の動作（国・都道府県共通）
 
-photos/                       日本の写真ファイルの置き場所（フォルダ分け不要、フラットに置く）
+japan-photos/                 日本の写真ファイルの置き場所（フォルダ分け不要、フラットに置く）
 world-photos/                 世界（日本以外）の写真ファイルの置き場所（同上）
 
-scripts/process_photos.py          photos/・world-photos/ の画像からメタデータを除去し、1MB超を縮小する
-scripts/generate_photos.py         photos/ から js/photos.js を自動生成
+scripts/process_photos.py          japan-photos/・world-photos/ の画像からメタデータを除去し、1MB超を縮小する
+scripts/generate_photos.py         japan-photos/ から js/photos.js を自動生成
 scripts/generate_world_photos.py   world-photos/ から js/world-photos.js を自動生成
 scripts/_common.py                 generate_photos.py / generate_world_photos.py が共有するロジック（直接実行しない）
 
@@ -50,13 +50,13 @@ assets/                       地図データの元ファイル（編集不要�
 
 ### 日本の写真
 
-1. `photos/` フォルダに、画像ファイルをそのまま置く（都道府県ごとのフォルダ分けは不要）。
+1. `japan-photos/` フォルダに、画像ファイルをそのまま置く（都道府県ごとのフォルダ分けは不要）。
    ファイル名は `<都道府県名><場所><撮影時期>.拡張子` にする。
    都道府県名のあとの区切り文字は「、」「・」「,」「-」「_」「 」など何でもよい。
 
    ```
-   photos/福岡、中洲、2026年8月.jpg
-   photos/長崎・鍋冠山からの眺望、2026年9月.jpg
+   japan-photos/福岡、中洲、2026年8月.jpg
+   japan-photos/長崎・鍋冠山からの眺望、2026年9月.jpg
    ```
 
 2. キャプションの文言を変えたい場合は `js/captions.js` にファイル名をキーにして書く（省略可）。

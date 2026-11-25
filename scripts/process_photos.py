@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-photos/ と world-photos/ の画像から、プライバシーに関わるメタデータ
+japan-photos/ と world-photos/ の画像から、プライバシーに関わるメタデータ
 （撮影機種・GPS位置情報などのEXIF、ICCカラープロファイル）を除去し、
 1MBを超えるファイルは1MB以下になるまで縮小する。
 
@@ -97,7 +97,7 @@ def process_dir(directory):
 
 
 def main():
-    targets = sys.argv[1:] if len(sys.argv) > 1 else [ROOT / "photos", ROOT / "world-photos"]
+    targets = sys.argv[1:] if len(sys.argv) > 1 else [ROOT / "japan-photos", ROOT / "world-photos"]
     total = 0
     for d in targets:
         print(f"[{Path(d).name}] メタデータ除去・サイズ縮小をチェックしています...")
