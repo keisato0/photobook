@@ -17,6 +17,21 @@ DATE_PATTERNS = [
 ]
 
 
+# 撮影時期（〇年〇月 / 〇年〇月〇日）の直後に付けた並び順の番号。例: 「…、2025年3月2」の「2」
+ORDER_SUFFIX_RE = re.compile(r"(\d{4}年\d{1,2}月(?:\d{1,2}日)?)(\d+)$")
+
+
+def split_order_suffix(caption):
+    """キャプション末尾の並び順の番号を取り除き、(番号を除いたキャプション, 番号) を返す。
+
+    番号がなければ (caption, None)。
+    """
+    m = ORDER_SUFFIX_RE.search(caption)
+    if not m:
+        return caption, None
+    return caption[: m.start(2)], int(m.group(2))
+
+
 def load_js_object(path, var_name):
     text = path.read_text(encoding="utf-8")
     match = re.search(rf"^const {var_name}\s*=\s*(\[.*?\]|\{{.*?\}})\s*;", text, re.S | re.M)
@@ -84,3 +99,18 @@ def sort_by_date(files):
         keyed.append((date_key, name, caption))
     keyed.sort(key=lambda item: (item[0] is None, item[0] or (0, 0, 0), item[1]))
     return [(name, caption) for _, name, caption in keyed], no_date
+
+
+def sort_by_order(files):
+    """[(name, caption, order), ...] を並べ替える。
+
+    order（ファイル名末尾の番号）があるものを番号順に先に並べ、
+    番号がないものはその後ろに撮影時期の早い順で並べる。
+    戻り値は ([(name, caption), ...], 時期が読み取れなかったファイル名のリスト)。
+    """
+    numbered = sorted(
+        [(order, name, caption) for name, caption, order in files if order is not None],
+        key=lambda item: (item[0], item[1]),
+    )
+    unnumbered, no_date = sort_by_date([(name, caption) for name, caption, order in files if order is None])
+    return [(name, caption) for _, name, caption in numbered] + unnumbered, no_date

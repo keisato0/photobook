@@ -13,6 +13,10 @@ generate_photos.py の世界版。ファイル名の付け方や並び順のル�
   各国のページ内での並び順は、キャプション末尾の撮影時期を読み取り、早い順（昇順）に並べる。
   時期が読み取れないファイルは末尾に置く。
 
+  並び順を指定したい場合は、撮影時期の直後に番号を付ける（キャプションには表示されない）。
+    例: イギリス、レディング、2025年2月1.jpg → 「レディング、2025年2月」、1番目
+  番号付きのファイルは番号順に先頭から並び、番号のないファイルはその後ろに撮影時期順で並ぶ。
+
 使い方:
   python3 scripts/generate_world_photos.py
 
@@ -60,8 +64,9 @@ def main():
             continue
         # GitHub上のファイル名（NFC）とパスを一致させる。macOS上の名前はNFDのことがある
         name = unicodedata.normalize("NFC", f.name)
+        auto_caption, order = _common.split_order_suffix(auto_caption)
         caption = overrides.get(name, auto_caption)
-        by_code[code].append((name, caption))
+        by_code[code].append((name, caption, order))
 
     if unknown:
         print("警告: ファイル名の先頭に国名が見つからず、スキップしました:")
@@ -70,7 +75,7 @@ def main():
 
     no_date_total = []
     for code, files in by_code.items():
-        sorted_files, no_date = _common.sort_by_date(files)
+        sorted_files, no_date = _common.sort_by_order(files)
         by_code[code] = sorted_files
         no_date_total.extend(no_date)
 
