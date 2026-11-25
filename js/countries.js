@@ -291,6 +291,11 @@ const COUNTRIES = [
     "english": "Georgia"
   },
   {
+    "code": "gf",
+    "kanji": "フランス領ギアナ",
+    "english": "French Guiana"
+  },
+  {
     "code": "gh",
     "kanji": "ガーナ",
     "english": "Ghana"

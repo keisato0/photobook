@@ -88,6 +88,7 @@ const WORLD_PHOTOS = {
     { src: "world-photos/イギリス、ブリストル、ボートを漕ぐ人々、2025年5月4.jpg", caption: "ブリストル、ボートを漕ぐ人々、2025年5月" },
   ],
   ge: [],
+  gf: [],
   gh: [],
   gl: [],
   gm: [],
