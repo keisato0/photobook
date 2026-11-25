@@ -24,6 +24,7 @@ generate_photos.py の世界版。ファイル名の付け方や並び順のル�
 
 import json
 import sys
+import unicodedata
 from datetime import date
 from pathlib import Path
 
@@ -45,6 +46,7 @@ def main():
     overrides = {}
     if CAPTIONS_JS.exists():
         overrides = _common.load_js_object(CAPTIONS_JS, "WORLD_CAPTIONS") or {}
+        overrides = {unicodedata.normalize("NFC", k): v for k, v in overrides.items()}
 
     by_code = {c["code"]: [] for c in countries}
     unknown = []
@@ -56,8 +58,10 @@ def main():
         if code is None:
             unknown.append(f.name)
             continue
-        caption = overrides[f.name] if f.name in overrides else auto_caption
-        by_code[code].append((f.name, caption))
+        # GitHub上のファイル名（NFC）とパスを一致させる。macOS上の名前はNFDのことがある
+        name = unicodedata.normalize("NFC", f.name)
+        caption = overrides.get(name, auto_caption)
+        by_code[code].append((name, caption))
 
     if unknown:
         print("警告: ファイル名の先頭に国名が見つからず、スキップしました:")
